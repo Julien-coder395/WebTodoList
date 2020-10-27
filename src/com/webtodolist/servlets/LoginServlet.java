@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,13 +32,21 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String logout = request.getParameter("logout");
-		System.out.println(logout);
 		if(logout != null && logout.equals("1")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", null);		
 		}
+		
+		// Gestion du cookie lors de la connexion.
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for(Cookie cookie:cookies) {
+				if(cookie.getName().contentEquals("username"))
+					request.setAttribute("username", cookie.getValue());
+			}
+		}
 					
-		request.getRequestDispatcher("login-page2.jsp").forward(request, response);
+		request.getRequestDispatcher("login-page.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,7 +61,9 @@ public class LoginServlet extends HttpServlet {
 			if(user != null) {
 				System.out.println("Authentification réussie");
 				
-				// Créer le cookie si première connexion. 			
+				Cookie cookie = new Cookie("username", username);
+				cookie.setMaxAge(60*60*24);
+				response.addCookie(cookie);
 				session.setAttribute("user", user);
 				response.sendRedirect("/WebTodoList/TodoListStudentServlet");
 			}

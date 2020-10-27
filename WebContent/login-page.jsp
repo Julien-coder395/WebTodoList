@@ -4,21 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Web to-do List Application</title>
+<title>Web to-dot list - LOGIN</title>
+<link type="text/css" rel="stylesheet" href="css/login-page.css">
 </head>
 <body>
-<h1>Login Page</h1>
-<form action="LoginServlet" method="post">
-			<table style="with: 50%">
-				<tr>
-					<td>UserName</td>
-					<td><input type="text" name="username" /></td>
-				</tr>
-					<tr>
-					<td>Password</td>
-					<td><input type="password" name="password" /></td>
-				</tr>
-			</table>
-			<input type="submit" value="Submit" /></form>
+ <%@ include file ="welcomeMessage-logout.jsp" %>
+ <form action="LoginServlet" method="post">
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" value="${ username }" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">Login</button>
+  </div>  
+  <div>
+  	<label>${ errorMessage }</label>
+  </div>
+</form> 
+
 </body>
 </html>

@@ -41,9 +41,8 @@ public class TodoListStudentServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("todoList-studentVersion.jsp").forward(request,  response);			
+		request.getRequestDispatcher("todoList-page.jsp").forward(request,  response);			
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
