@@ -6,21 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>To-do list student version</title>
+<link type="text/css" rel="stylesheet" href="css/todolist.css">
 </head>
 <body>
 <%@ include file ="welcomeMessage-logout.jsp" %>
-<div id="container">
+
+<div class="conteneur "id="container">
 <c:if test="${ sessionScope.user.role == EnumRole.INSTRUCTOR }">
-	<div style="margin-top:10px">
+	<div class="conteneur-addbutton">
 	<form action="TodoItemCreateServlet" method="get">
 		<input type="submit" value="Add To-do item"/>
 	</form>	
 </div>
 </c:if>
+
 	<div id="content">
 		<table>
 			<tr>
-				<th>Description</th>
+				<th>Todo</th>
+				<c:if test="${ sessionScope.user.role == EnumRole.INSTRUCTOR }">
+					<th>Actions</th>
+				</c:if>
+				
 			</tr>
 			
 			<c:forEach var="tempItem" items="${ items }">	

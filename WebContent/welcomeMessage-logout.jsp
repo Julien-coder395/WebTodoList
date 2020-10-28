@@ -8,8 +8,20 @@
 	<h1>ESVIL - Todo list</h1>
 </header>
 
-<c:if test="${! empty sessionScope.user }">
-	<label> Welcome ${ sessionScope.user.username }</label>
-</c:if>
-<li><a href = "/WebTodoList/LoginServlet?logout=1">Logout</a></li>
+
+<p>
+	<span class="welcomeMessage">
+		<c:if test="${! empty sessionScope.user }">
+			<label> Welcome ${ sessionScope.user.username }</label>
+		</c:if>
+		<c:if test="${ empty sessionScope.user }">
+			<label> Welcome </label>
+		</c:if>
+	</span>
+		<a href = "/WebTodoList/LoginServlet?logout=1">Logout</a>
+</p>
+
+
+
+
 

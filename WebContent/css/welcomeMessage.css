@@ -2,3 +2,16 @@ h1{
 	color: white;
 	background-color: #CF1052;
 }
+
+.welcomeMessage {
+	float: left;
+	border: 1px solid #CF1052; 
+    padding: 5px;
+    font-size:20px;
+    font-family:Arial;
+}
+
+p {
+	text-align: right;
+}
+
