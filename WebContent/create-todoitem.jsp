@@ -14,7 +14,7 @@
 	 <form action="TodoItemCreateServlet" method="post" class="Todo">
 	 	<div class="ToDo">
 	 		<label for="descrip">ToDo description:</label>
-	 		<textarea class = "description" name="description" rows="2" cols="40" required ></textarea>
+	 		<textarea class = "description" name="description"  required ></textarea>
 	 	</div>
 	 	<div class="ToDo">
 	 		<label for="bluelink">ToDo drop link:</label>

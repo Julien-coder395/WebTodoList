@@ -23,9 +23,9 @@
 	<div id="content">
 		<table>
 			<tr>
-				<th >Todo</th>
+				<th style="width:40%">Todo</th>
 				<c:if test="${ sessionScope.user.role == EnumRole.INSTRUCTOR }">
-					<th>Actions</th>
+					<th style="width:25%">Actions</th>
 				</c:if>
 				<th >link</th>
 				<th>deadline</th>
