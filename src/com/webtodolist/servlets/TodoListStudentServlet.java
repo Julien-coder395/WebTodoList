@@ -37,7 +37,7 @@ public class TodoListStudentServlet extends HttpServlet {
 			List<TodoItemBean> items = todoItemDBUtil.getTodoItems();
 			request.setAttribute("items", items);
 			TodoItemBean test = items.get(1);
-			System.out.println(test.getDescription());
+			System.out.println(test.getDeadline());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

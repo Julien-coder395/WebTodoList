@@ -36,8 +36,12 @@ public class TodoItemCreateServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String description = request.getParameter("description");
+		String link = request.getParameter("link");
+		String deadline = request.getParameter("deadline");
 		TodoItemBean newItem = new TodoItemBean();
 		newItem.setDescription(description);
+		newItem.setLink(link);
+		newItem.setDeadline(deadline);
 		todoItemDBUtil.createTodoItem(newItem);
 		response.sendRedirect("/WebTodoList/TodoListStudentServlet");	
 	}

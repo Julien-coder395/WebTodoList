@@ -34,8 +34,9 @@ public class TodoItemDBUtil extends DBUtilBase {
 			while(myRs.next()) {
 				int id = myRs.getInt("id");
 				String description = myRs.getString("description");
-				
-				TodoItemBean item = new TodoItemBean(id, description);
+				String link = myRs.getString("link");
+				String deadline = myRs.getString("deadline");
+				TodoItemBean item = new TodoItemBean(id, description,link,deadline);
 				items.add(item);
 			}
 			return items;
@@ -57,13 +58,13 @@ public class TodoItemDBUtil extends DBUtilBase {
 		
 		try {
 			myConn = dataSource.getConnection();
-			String sql = "SELECT * FROM todoitem WHERE id=?";
+			String sql = "SELECT * FROM webtodolistdb.todoitem WHERE id=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setInt(1, id);
 			myRs = myStmt.executeQuery();
 			
 			while(myRs.next()) {	
-				item = new TodoItemBean(id, myRs.getString("description"));
+				item = new TodoItemBean(id, myRs.getString("description"), myRs.getString("link"),myRs.getString("deadline") );
 			}
 			return item;
 		}
@@ -82,10 +83,13 @@ public class TodoItemDBUtil extends DBUtilBase {
 		
 		try {
 			myConn = dataSource.getConnection();
-			String sql = "UPDATE todoitem SET description=? where id=?";
+			String sql = "UPDATE webtodolistdb.todoitem SET description=?, link=?, deadline=? where id=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, item.getDescription());
-			myStmt.setInt(2, item.getId());
+			myStmt.setString(2, item.getLink());
+			myStmt.setString(3, item.getDeadline());
+			myStmt.setInt(4, item.getId());
+			
 			myStmt.execute();		
 		}
 		catch(Exception e) {
@@ -102,8 +106,10 @@ public class TodoItemDBUtil extends DBUtilBase {
 		
 		try {
 			myConn = dataSource.getConnection();
-			myStmt = myConn.prepareStatement("INSERT INTO todoitem (description) VALUES(?);");
+			myStmt = myConn.prepareStatement("INSERT INTO webtodolistdb.todoitem (description,link,deadline) VALUES(?,?,?);");
 			myStmt.setString(1, item.getDescription());
+			myStmt.setString(2, item.getLink());
+			myStmt.setString(3, item.getDeadline());
 			myStmt.executeUpdate();			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -5,7 +5,8 @@
 <link type="text/css" rel="stylesheet" href="css/welcomeMessage.css">
 
 <header>
-	<h1>ESVIL - Todo list</h1>
+	
+	<h1>  <img src="images/logo.png">    ESILV - Todo list</h1>
 </header>
 
 
