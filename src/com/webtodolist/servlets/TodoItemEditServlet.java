@@ -42,8 +42,10 @@ public class TodoItemEditServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String description = request.getParameter("description");
+		String link = request.getParameter("link");
+		String deadline = request.getParameter("deadline");
 		System.out.println(description);
-		TodoItemBean newItem = new TodoItemBean(id, description);
+		TodoItemBean newItem = new TodoItemBean(id, description,link, deadline);
 		todoItemDBUtil.updateTodoItem(newItem);
 		response.sendRedirect("/WebTodoList/TodoListStudentServlet");
 	}

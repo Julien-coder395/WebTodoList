@@ -18,6 +18,6 @@ public class BeanBase {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	
 }
