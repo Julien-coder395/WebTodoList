@@ -23,11 +23,11 @@
 	<div id="content">
 		<table>
 			<tr>
-				<th>Todo</th>
+				<th style="width:40%">Todo</th>
 				<c:if test="${ sessionScope.user.role == EnumRole.INSTRUCTOR }">
-					<th>Actions</th>
+					<th style="width:25%">Actions</th>
 				</c:if>
-				<th>link</th>
+				<th >link</th>
 				<th>deadline</th>
 				
 			</tr>
@@ -48,7 +48,7 @@
 						<td> <a href="${ EditLink }">Edit | </a> 
 								 <a href="${ DeleteLink }"> Delete</a></td>	
 					</c:if>	
-					<td>${tempItem.link}</td>	
+					<td> <a href ="${tempItem.link}">drop link</a></td>	
 					<td>${tempItem.deadline}</td>
 			</c:forEach>
 		</table>
